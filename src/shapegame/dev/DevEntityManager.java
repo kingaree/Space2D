@@ -3,6 +3,7 @@ package shapegame.dev;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import shapegame.engine.Handler;
 import javazoom.jl.player.Player;
@@ -56,7 +57,7 @@ public class DevEntityManager {
 		return devEntities;
 	}
 
-	public void setDevEntities(List<DevEntity> devEntities) {
+	public void setDevEntities(CopyOnWriteArrayList<DevEntity> devEntities) {
 		this.devEntities = devEntities;
 	}
 	

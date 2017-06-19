@@ -23,10 +23,9 @@ public class DevTriEnemy extends DevEntity{
 		vertices[0] = new Vector2(32 + x, 0 + y);
 		vertices[1] = new Vector2(64 + x, 64 + y);
 		vertices[2] = new Vector2(0 + x, 64 + y);
+
 		
-		System.out.println(separatingAxisTheorem());
 		
-		x++;
 		
 	}
 

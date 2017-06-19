@@ -25,10 +25,7 @@ public class DevSquareEnemy extends DevEntity{
 		vertices[1] = new Vector2(64 + x, 0 + y);
 		vertices[2] = new Vector2(64 + x, 64 + y);
 		vertices[3] = new Vector2(0 + x, 64 + y);
-		
-		System.out.println(separatingAxisTheorem());
-		
-		
+
 		
 	}
 
@@ -39,7 +36,6 @@ public class DevSquareEnemy extends DevEntity{
 		for(int i = 0; i < vertices.length; i++){
 
 		}
-		
 	}
 
 	@Override
