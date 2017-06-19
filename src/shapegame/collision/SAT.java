@@ -8,29 +8,15 @@ public class SAT {
 	
 	private Handler handler;
 	private DevEntity obj1, obj2;
-	private Vector2[] verticesA, verticesB, axis;
+	private Vector2[] verticesA, verticesB;
 	private Vector2 proj, p1, p2, p3, p4;
+	private ObtainEdges e1, e2 = new ObtainEdges();
 	
 	public SAT(Handler handler){
 		this.handler = handler;
 		
 	}
 	
-	public void obtainEdges(Vector2[] vertices){
-		axis = new Vector2[vertices.length];
-		for(int i = 0; i < vertices.length; i++){
-			
-			Vector2 e1 = vertices[i];
-			
-			Vector2 e2 = vertices[i + 1 == vertices.length ? 0 : i + 1];
-			
-			Vector2 edge = e1.subtract(e2);
-			
-			Vector2 perp = edge.perp(edge);
-
-			axis[i] = perp;
-		}
-	}
 	
 	public Vector2 projectAxis(Vector2[] vertices, Vector2 axis){
 		Vector2 norm = axis.normalize(axis);
@@ -59,9 +45,10 @@ public class SAT {
 		
 		verticesA = obj1.getVertices();
 		verticesB = obj2.getVertices();
+		
 
-				Vector2[] axes1 = axisA;
-				Vector2[] axes2 = axisB;
+				Vector2[] axes1 = e1.getEdges(axisA);
+				Vector2[] axes2 = e2.getEdges(axisB)
 
 				for(int i = 0; i < axes1.length; i++){
 					Vector2 axis = axes1[i];
