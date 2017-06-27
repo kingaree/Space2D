@@ -14,3 +14,6 @@ int circlesColliding(int x1,int y1,int radius1,int x2,int y2,int radius2)
         return false;
     }
 }
+
+
+http://www.jeffreythompson.org/collision-detection/poly-circle.php
