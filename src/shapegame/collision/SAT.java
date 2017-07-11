@@ -64,6 +64,13 @@ public class SAT {
 		verticesB = obj2.getVertices();
 		
 		
+		if(object2.isCircle()){
+			if(polyToCircle(verticesA, (double) obj2.getX(), (double) obj2.getY(), obj2.getRadius())){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
 				Vector2[] axes1 = getEdges(axisA);
 				Vector2[] axes2 = getEdges(axisB);
 
@@ -88,7 +95,93 @@ public class SAT {
 						return false;
 					}
 				}
+			}
 			return true;
-		}	
+		}
+	
+	public boolean polyToCircle(Vector2[] vertices, double centerX, double centerY, double radius){
+		int next = 0;
+		for(int i = 0; i < vertices.length; i++){
+			 next = i + 1;
+				if(next == vertices.length){
+					next = 0;
+				}
+				
+			Vector2 vc = vertices[i];
+			Vector2 vn = vertices[next];
+			
+			if(lineCircle(vc.x, vc.y, vn.x, vn.y, centerX, centerY, radius) || circleToCircle(centerX, centerY, radius, vc.x, vc.y, 0))
+				return true;
+		}
+		
+		return false;
+		
+	}
+
+	private boolean lineCircle(double x1, double y1, double x2, double y2, double cx, double cy, double r) {
+		
+		double distX = x2 - x1;
+		double distY = y2 - y1;
+		
+		double len = Math.sqrt((distX * distX) + (distY * distY));
+		
+		double dot = ( ((cx - x1) * (x2 - x1)) + ((cy - y1) * (y2 - y1)) ) / (len * len);
+		
+		double closestX = (float) (x1 + (dot * distX));
+		double closestY = (float) (y1 + (dot * distY));
+		
+		if(!linePoint(x1, y1, x2, y2, closestX, closestY)){
+			return false;
+		}
+		
+		double distanceX = closestX - cx;
+		double distanceY = closestY - cy;
+		
+		double distance = Math.sqrt((distanceX * distanceX) + (distanceY * distanceY));
+		
+		if(distance < r){
+			return true;
+		}else{
+			return false;
+		}
+	
+	}
+
+	private boolean linePoint(double x1, double y1, double x2, double y2, double px, double py) {
+		
+		double d1 = dist(px, py, x1, y1);
+		double d2 = dist(px, py, x2, y2);
+		
+		double lineLen = dist(x1,y1, x2, y2);
+		
+		double buffer = 0.1;
+		
+		if(d1 + d2 > lineLen-buffer && d1 + d2 <= lineLen + buffer){
+			return true;
+		}
+		
+		return false;
+	}
+	
+	private boolean circleToCircle(double x1, double y1, double r1, double x2, double y2, double r2){
+		
+		double dx = x2 - x1;
+		double dy = y2 - y1;
+		
+		double rr = r1 + r2;
+		
+		if((dx * dx) + (dy * dy) < (rr * rr)){
+			return true;
+		}else{
+			return false;
+		}
+		
+	}
+
+	private float dist(double px, double py, double x1, double y1) {
+		
+		return (float) Math.sqrt((px - x1) * (px - x1) + (py - y1) * (py - y1));
+	}
+	
 	
 }

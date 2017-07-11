@@ -10,7 +10,7 @@ import shapegame.engine.Vector2;
 public class DevSquareEnemy extends DevEntity{
 
 	public DevSquareEnemy(Handler handler, float x, float y) {
-		super(handler, x, y, 4);
+		super(handler, x, y, 4, 0);
 		
 		vertices[0] = new Vector2(0 + x, 0 + y);
 		vertices[1] = new Vector2(64 + x, 0 + y);
@@ -42,6 +42,24 @@ public class DevSquareEnemy extends DevEntity{
 	public void die() {
 		active = false;
 		
+	}
+
+	@Override
+	public boolean isCircle() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public double getRadius() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean isConcave() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

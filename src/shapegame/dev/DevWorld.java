@@ -23,6 +23,8 @@ public class DevWorld{
 		
 		devM.addDevEntity(new DevSquareEnemy(handler, 200, 400));
 		devM.addDevEntity(new DevTriEnemy(handler, 200, 100));
+		devM.addDevEntity(new DevCircle(handler, 600, 300));
+		devM.addDevEntity(new DevArrow(handler, 100, 300));
 	}
 	
 	public void tick(){
