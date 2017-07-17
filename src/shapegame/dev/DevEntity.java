@@ -15,15 +15,13 @@ public abstract class DevEntity {
 	protected Handler handler;
 	protected boolean active = true;
 	protected float x, y;
-	protected int n;
-	protected Vector2[] axis;
 	protected Vector2[] vertices, vertices2;
 	
 	public DevEntity(Handler handler, float x, float y, int n, int n2){
 		this.handler = handler;
 		this.x = x;
 		this.y = y;
-		this.n = n;
+
 		
 
 		vertices = new Vector2[n];

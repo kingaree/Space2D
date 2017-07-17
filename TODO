@@ -1,2 +1,3 @@
 Stop Triball from rotating when player is dead
-prevent Triball from shooting before a few seconds after spawn
+prevent Triball from shooting before a few seconds after spawn - done
+add triball spawn animation

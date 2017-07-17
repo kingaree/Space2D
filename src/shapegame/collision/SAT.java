@@ -3,11 +3,12 @@ package shapegame.collision;
 import shapegame.dev.DevEntity;
 import shapegame.engine.Handler;
 import shapegame.engine.Vector2;
+import shapegame.entity.Entity;
 
 public class SAT {
 	
 	private Handler handler;
-	private DevEntity obj1, obj2;
+	private Entity obj1, obj2;
 	private Vector2[] verticesA, verticesB;
 	private Vector2 proj, p1, p2, p3, p4;
 	
@@ -56,13 +57,16 @@ public class SAT {
 		return proj;
 	}
 	
-	public boolean separatingAxisTheorem(Vector2[] axisA, Vector2[] axisB, DevEntity object1, DevEntity object2){
+	public boolean separatingAxisTheorem(Vector2[] axisA, Vector2[] axisB, Entity object1, Entity object2){
 		this.obj1 = object1;
 		this.obj2 = object2;
 		
-		verticesA = obj1.getVertices();
-		verticesB = obj2.getVertices();
-		
+		verticesA = axisA;
+		verticesB = axisB;
+
+		if(!obj2.checkVulnerability()){
+			return false;
+		}
 		
 		if(object2.isCircle()){
 			if(polyToCircle(verticesA, (double) obj2.getX(), (double) obj2.getY(), obj2.getRadius())){
@@ -163,7 +167,7 @@ public class SAT {
 		return false;
 	}
 	
-	private boolean circleToCircle(double x1, double y1, double r1, double x2, double y2, double r2){
+	public boolean circleToCircle(double x1, double y1, double r1, double x2, double y2, double r2){
 		
 		double dx = x2 - x1;
 		double dy = y2 - y1;

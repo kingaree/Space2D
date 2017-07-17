@@ -9,6 +9,7 @@ import shapegame.collision.SAT;
 import shapegame.engine.Assets;
 import shapegame.engine.Handler;
 import shapegame.engine.Vector2;
+import shapegame.entity.Entity;
 
 public class DevPlayer extends DevEntity{
 	
@@ -36,19 +37,7 @@ public class DevPlayer extends DevEntity{
 		vertices[3] = new Vector2(0 + x, 64 + y);
 		
 	
-		CopyOnWriteArrayList<DevEntity> aL = new CopyOnWriteArrayList<>(handler.getDevWorld().getDevM().getDevEntities());
-		if(active)
-			for(int i = 0; i < aL.size(); i++)
-				if(aL.get(i) != this)
-					if(aL.get(i).isConcave()){
-						if(sat.separatingAxisTheorem(vertices, aL.get(i).vertices, aL.get(0), aL.get(i)) || sat.separatingAxisTheorem(vertices, aL.get(i).vertices2, aL.get(0), aL.get(i))){
-							System.out.println("collide");
-						}
-					}else{
-						if(sat.separatingAxisTheorem(vertices, aL.get(i).vertices, aL.get(0), aL.get(i))){
-							System.out.println("collide");
-						}
-					}
+
 					
 		
 		
